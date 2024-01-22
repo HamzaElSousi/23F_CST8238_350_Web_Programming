@@ -1,0 +1,79 @@
+/* Reset margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #0f6a36;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+footer {
+    background-color: #0f6a36;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+nav {
+    background-color: #19a961;
+    color: #fff;
+    width: 15%;
+    height: 100vh;
+    position: fixed;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin-bottom: 10px;
+}
+
+.content {
+    padding: 20px;
+    margin-left: 15%;
+    width: 85%;
+    margin-bottom: 100px; /* Adjust this value to provide space for the footer */
+}
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+} */
