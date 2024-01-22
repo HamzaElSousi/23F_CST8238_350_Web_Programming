@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shapeApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AngularJS Problems and Solution</title>
+    <link rel="stylesheet" href="Styles.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <!-- Header -->
+    <div id="header">
+        <h1>CET - Computer Science</h1>
+        <h2>CST8238_350 Web Programming</h2>
+        <h3>Assignment 1 - AngularJS Problems and Solutions</h3>
+    </div>
+    </header>
+
+    <div class="menu">
+        <a href="index.html">Home</a>
+        <a href="AreaCalculator.html">Area Calculator</a>
+        <a href="MultiplicationTable.html">Multiplication Table</a>
+        <a href="RandomGenerator.html">Random Generator</a>
+    </div>
+
+    <div class="content" ng-controller="RectangleController">
+        <h1>Welcome to the Rectangle Calculator</h1>
+    <p>Input number values to calculate a Rectangle's area:</p>
+    Length: <input type="number" ng-model="length">
+    Width: <input type="number" ng-model="width">
+    Area: {{ area() }}
+    </div>
+
+<footer>
+    <div>
+        <br>
+        <p>Student Number: <b>040-982-818</b></p>
+        <p>First Name: <b>Hamza</b></p>
+        <p>Last Name: <b>El Sousi</b></p>
+        <p><b>Course: CST8238_350 Web Programming</b></p>
+        <p><b><a href="mailto:Elso0011@algonquinlive.com">Email Address: Elso0011@algonquinlive.com</a></b></p>
+        <p>© 2023 Rectangle Area Calculator</p>
+    </div>
+</footer>
+
+<script>
+    var app = angular.module('shapeApp', []);
+    app.controller('RectangleController', function($scope) {
+        $scope.length = 0;
+        $scope.width = 0;
+
+        $scope.area = function() {
+            return $scope.length * $scope.width;
+        };
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="randomApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Random Number Generator</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="Styles.css">
+
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* You can choose any preferred font */
+}
+
+body {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+header, footer {
+    width: 100%;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.menu {
+    float: left;
+    width: 15%;
+    background-color: #34495e;
+    height: 100vh; /* Full viewport height */
+    position: sticky;
+    top: 0;
+}
+
+.menu a {
+    display: block;
+    color: #ecf0f1;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-bottom: 1px solid #2c3e50;
+}
+
+.menu a:hover {
+    background-color: #2c3e50;
+}
+
+.content {
+    margin-left: 15%;
+    background-color: #ffffff;
+    padding: 20px;
+    min-height: 80vh; /* Ensure the content area takes up at least this much height */
+}
+
+input[type="number"] {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 95%; /* A bit less than 100% to account for paddings */
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+button:hover {
+    background-color: #2980b9;
+}
+    </style>
+    
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <div id="header">
+    <h1>CET - Computer Science</h1>
+    <h2>CST8238_350 Web Programming</h2>
+    <h3>Assignment 1 - AngularJS Problems and Solutions</h3>
+    </div>
+</header>
+
+    <div class="menu">
+    <a href="index.html">Home</a>
+    <a href="AreaCalculator.html">Area Calculator</a>
+    <a href="MultiplicationTable.html">Multiplication Table</a>
+    <a href="RandomGenerator.html">Random Generator</a>
+    </div>
+
+    <div ng-controller="RandomController" class="content">
+    <h1>Welcome to the Random Number Generator</h1>
+    <h2>Input number value to generate random ranges of your input:</h2>
+
+    Number of Randoms: <input type="number" ng-model="numOfRandoms" ng-change="generateRandoms()">
+    <div ng-repeat="result in results">
+        {{ result }}
+    </div>
+
+    <footer>
+    <div>
+        <br>
+        <p>Student Number: <b>040-982-818</b></p>
+        <p>First Name: <b>Hamza</b></p>
+        <p>Last Name: <b>El Sousi</b></p>
+        <p><b>Course: CST8238_350 Web Programming</b></p>
+        <p><b><a href="mailto:Elso0011@algonquinlive.com">Email Address: Elso0011@algonquinlive.com</a></b></p>
+        <p>© 2023 Random Generator</p>
+    </div>
+    </footer>
+
+    <script>
+
+        var app = angular.module('randomApp', []);
+        app.controller('RandomController', function($scope) {
+        $scope.numOfRandoms = 0;
+        $scope.results = [];
+
+        $scope.generateRandoms = function() {
+            var counts = [0, 0, 0, 0, 0]; // reset counts
+
+            for(var i = 1; i < $scope.numOfRandoms; i++) {
+                var rand = Math.floor((Math.random() * 50) + 1);
+                if(rand >= 0 && rand <= 10) counts[0]++;
+                else if(rand >= 11 && rand <= 20) counts[1]++;
+                else if(rand >= 21 && rand <= 30) counts[2]++;
+                else if(rand >= 31 && rand <= 40) counts[3]++;
+                else if(rand >= 41 && rand <= 50) counts[4]++;
+            }
+
+            $scope.results = counts.map(function(count, index) {
+                switch(index) {
+                    case 0: return count + " numbers are randomly generated in the range between 01 - 10";
+                    case 1: return count + " numbers are randomly generated in the range between 11 - 20";
+                    case 2: return count + " numbers are randomly generated in the range between 21 - 30";
+                    case 3: return count + " numbers are randomly generated in the range between 31 - 40";
+                    case 4: return count + " numbers are randomly generated in the range between 41 - 50";
+                }
+            });
+        };
+    });
+
+    </script>
+
+</body>
+</html>
