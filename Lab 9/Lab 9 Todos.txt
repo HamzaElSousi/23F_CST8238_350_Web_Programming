@@ -1,0 +1,4 @@
+1. Add ob_start(); and ob_end_flush(); on server
+2. Properly set up db config in each file excluding header, footer, menu.
+3. Clean redundancy and unused connections
+
