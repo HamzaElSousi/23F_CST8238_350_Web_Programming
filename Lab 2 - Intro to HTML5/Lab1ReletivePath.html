@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Took the meta data from right click, inspecting the W3 schools website. The part is to continuosly re-align the structure of the elements to the fit screen width -->
+    <meta name="viewport" content="width=device-width">
+    <title>Basic Concepts of Web Technology</title>
+</head>
+<body>
+    <h1>Basic Concepts of Web Technology</h1>
+    
+    <h2>Define HTML:</h2>
+    <p>HTML stands for HyperText Markup Language. It is a standard markup language used to create web pages. HTML defines the structure and layout of web content using a set of tags and attributes.</p>
+    
+    <h2>Define Client-server model of communications:</h2>
+    <p>The client-server model is a communication model where clients request services or resources from servers. Clients initiate requests, and servers provide responses. It is a fundamental concept in web technology.</p>
+    
+    <h2>Write down the name of different types of servers:</h2>
+    <p>There are various types of servers, including web servers, email servers, file servers, DNS servers, and application servers, among others.</p>
+    
+    <h2>Define a Web Server:</h2>
+    <p>A web server is a software and hardware system that stores and serves web content to clients. It responds to HTTP requests from browsers and delivers web pages, files, or other resources. </p>
+    
+    <h2>Define Data Centers:</h2>
+    <p>Data centers are centralized facilities equipped with computing and networking infrastructure to store, manage, and process data and applications. They often house servers, storage devices, and networking equipment.</p>
+    
+    <h2>Why do we need a Uniform Resource Locator (URL)?</h2>
+    <p>A Uniform Resource Locator (URL) is used to identify and locate resources on the web. It provides a standardized way to specify the address of web pages and resources, making them accessible to users.</p>
+    
+<!-- Less detailed than referenced websites but hopefully suffecient -->
+
+    <h2>Give an example of Uniform Resource Locator (URL) and specify all components of a URL:</h2>
+    <p>Example URL: <a href="https://www.example.com:8080/path/to/resource?param=value#section">https://www.example.com:8080/path/to/resource?param=value#section</a><br>
+    Components:
+    <ul>
+        <li>Scheme: https</li>
+        <li>Host: www.example.com</li>
+        <li>Port number: 8080</li>
+        <li>Path: /path/to/resource</li>
+        <li>Query: ?param=value</li>
+        <li>Fragment: #section</li>
+    </ul>
+    </p>
+    
+    <h2>What is the difference between a static and a dynamic web site?</h2>
+    <p>A static website contains fixed content that remains the same for all users. In contrast, a dynamic website generates content on the fly, often pulling data from databases or other sources, allowing for personalized and interactive experiences.</p>
+    
+    <h2>Why do we need Domain Name System (DNS)?</h2>
+    <p>The Domain Name System/Service (DNS) is necessary to translate human-readable domain names (e.g., www.example.com) into IP addresses (e.g., 192.168.1.1) that computers can understand, facilitating internet communication.</p>
+    
+    <h2>Describe in detail the process of DNS address resolution:</h2>
+    <p>The DNS address resolution process involves:
+    <ol>
+        <li>The client queries a DNS resolver (often provided by the Internet Service Provider) with a domain name.</li>
+        <li>The DNS resolver checks its cache for the corresponding IP address; if found, it returns the IP to the client.</li>
+        <li>If not found, the resolver contacts root DNS servers, followed by top-level domain (TLD) and authoritative DNS servers, recursively, until it obtains the IP address.</li>
+        <li>The resolver caches the result for future use.</li>
+    </ol>
+    </p>
+    
+    <h2>Give some examples of generic top-Level domains (gTLD):</h2>
+    <p>Examples of gTLDs include .com, .org, .net, .info, and .biz, among others.</p>
+    
+    <h2>Give some examples of country code top-Level domains (ccTLD):</h2>
+    <p>Examples of ccTLDs include .us (United States), .uk (United Kingdom), .ca (Canada), .au (Australia), and .jp (Japan), among others.</p>
+    
+    <h2>How can you pass a user’s information from the client to the web server?</h2>
+    <p>User information can be passed to the web server through methods such as HTML forms, query parameters in URLs, cookies, and HTTP headers.</p>
+    
+    <h2>What is the function (purpose) of Hypertext Transfer Protocol (HTTP)?</h2>
+    <p>HTTP is a protocol used for transferring data between a web browser (client) and a web server. Its purpose is to enable the request and retrieval of web resources, such as web pages, images, and files.</p>
+    
+    <h2>Describe how a single web page is displayed on a web browser:</h2>
+    <p>When a user enters a URL or clicks on a link, the browser sends an HTTP request to the web server. The server processes the request, retrieves the web page's HTML and associated resources (CSS, JavaScript, images), and sends them back to the browser. The browser then renders the page, applying styles and executing scripts to display the content.</p>
+    
+    <h2>Give some examples of HTTP request methods:</h2>
+    <p>HTTP request methods include GET (retrieves data), POST (submits data), PUT (updates data), DELETE (deletes data), and more. They define the action to be performed on a resource.</p>
+</body>
+</html>
+<hr>
+<footer>
+    <p>Author: Hamza El Sousi</p>
+    <p>Student ID: 040982818</p>
+    <p>References:</p>
+	<ul> 
+	<li>https://www.geeksforgeeks.org/components-of-a-url/</li>
+	<li>https://www.ibm.com/docs/en/cics-ts/5.1?topic=concepts-components-url</li>
+	<li>https://www.w3schools.com/html/</li>
+	</ul>
+    
+</footer>
