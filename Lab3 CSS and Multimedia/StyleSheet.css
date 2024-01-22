@@ -1,0 +1,100 @@
+/* Set the font of your website to Times New Roman */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+/* Header styles */
+#header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    width: 100%
+}
+
+#header h1 {
+    font-size: 36px;
+}
+
+#header h2 {
+    font-size: 24px;
+}
+
+/* Menu styles */
+#menu {
+    background-color: #444;
+    color: white;
+    float: left;
+    width: 20%; /* Adjust the width as needed */
+    padding: 650px 0;
+}
+
+#menu ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+#menu ul li {
+    display: inline;
+    margin-bottom: 20px;
+}
+
+#menu ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: inline; /* Make menu items inline for spacing */
+}
+
+/* Content area styles */
+#content {
+    margin-left: 20%; /* Adjust margin-left to match menu width and spacing */
+    padding: 20px;
+}
+
+/* Style the questions and answers */
+#content dl {
+    margin-top: 20px;
+}
+
+#content h3 {
+    color: green;
+    font-size: 20px;
+}
+
+#content h4 {
+    color: red;
+    font-size: 16px;
+}
+
+/* Footer styles */
+#footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    clear: both; /* Clear both floated elements (menu and content) */
+}
+
+/* Apply a hover effect to menu links */
+#menu ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Additional styles for links */
+a {
+    text-decoration: none;
+    color: #0077b5; /* LinkedIn blue color */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add styles for visited links */
+a:visited {
+    color: #4d4d4d; /* Visited link color */
+}
