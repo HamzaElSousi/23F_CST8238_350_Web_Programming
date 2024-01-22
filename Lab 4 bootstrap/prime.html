@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Generator</title>
+
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="StyleSheet.css"> 
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
+    
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="container-fluid bg-primary text-white p-3">
+        <div class="container">
+            <h1>Computer Engineering - Computer Science</h1>
+            <p>Web Programming</p>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <!-- <div id="Menu" class="container"> -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sidebar-navbar">
+        <div class="container-fluid">
+            <!-- <a class="navbar-brand" href="#">Prime Generator</a> -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://hamzae.sgedu.site/Lab1/index.html">Lab 1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://hamzae.sgedu.site/Lab2/index.html">Lab 2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://hamzae.sgedu.site/Lab3/index.html">Lab 3</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://hamzae.sgedu.site/Lab4/prime.html">Lab 4</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+    <!-- Button to Generate Prime Numbers -->
+    <div class="container mt-5">
+        <button class="btn btn-primary" onclick="generatePrimes()">Generate Prime Numbers</button>
+    </div>
+
+    <!-- Results Area -->
+    <div class="container mt-3">
+        <h3>Prime Numbers:</h3>
+        <div id="primeResults"></div>
+    </div>
+
+   <!-- Footer -->
+   <footer class="container-fluid bg-dark text-white p-3 fixed-bottom"> <!-- Use "fixed-bottom" to align the footer to the bottom -->
+    <div class="container">
+        <p>Student Number: <b>040-982-818</b></p>
+        <p>First Name: <b>Hamza</b></p>
+        <p>Last Name: <b>El Sousi</b></p>
+        <p>Email Address: <b>elso0011@algonquinlive.com<b></p>
+    </div>
+</footer>
+
+    <!-- Include Bootstrap JS and your custom JavaScript here -->
+
+    <script>
+        function isPrime(num) {
+            if (num <= 1) return false;
+            if (num <= 3) return true;
+            
+            if (num % 2 === 0 || num % 3 === 0) return false;
+            
+            let i = 5;
+            while (i * i <= num) {
+                if (num % i === 0 || num % (i + 2) === 0) return false;
+                i += 6;
+            }
+            
+            return true;
+        }
+
+        function generatePrimes() {
+            const lowerRange = parseInt(prompt("Enter Lower Range:"));
+            const upperRange = parseInt(prompt("Enter Upper Range:"));
+
+            if (isNaN(lowerRange) || isNaN(upperRange)) {
+                alert("Please enter valid numbers.");
+                return;
+            }
+
+            const primes = [];
+
+            for (let num = lowerRange; num <= upperRange; num++) {
+                if (isPrime(num)) {
+                    primes.push(num);
+                }
+            }
+
+            // Display prime numbers in a bulleted list
+            const primeResultsElement = document.getElementById("primeResults");
+            primeResultsElement.innerHTML = ''; // Clear previous results
+
+            if (primes.length > 0) {
+                primes.forEach(prime => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = `${prime} is a prime number.`;
+                    primeResultsElement.appendChild(listItem);
+                });
+            } else {
+                const listItem = document.createElement("li");
+                listItem.textContent = "No prime numbers found.";
+                primeResultsElement.appendChild(listItem);
+            }
+        }
+    </script>
+</body>
+</html>

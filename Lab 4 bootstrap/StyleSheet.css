@@ -1,0 +1,84 @@
+/* Set the font of your website to Times New Roman */
+body {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    text-align: right;
+}
+
+/* Header styles */
+.container-fluid.bg-primary.text-red.p-3 {
+    background-color: #333;
+    color: red;
+    text-align: center;
+}
+
+.container-fluid.bg-primary.text-red.p-3 p {
+    font-size: 24px;
+}
+
+/* Navigation Menu styles */
+.navbar.navbar-expand-lg.navbar-light.bg-light {
+    background-color: #444;
+    color: red;
+    float: left;
+    width: 15%;
+    height: 60vh;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light .navbar-brand {
+    color: red;
+    font-weight: bold;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light .navbar-nav .nav-link {
+    color: red;
+    font-weight: bold;
+}
+
+/* Content area styles */
+.container.mt-5 {
+    margin-top: 20px; /* Adjust margin-top for spacing */
+    margin-left: 250px;
+    
+}
+
+.container.mt-3 h3 {
+    color: green;
+    font-size: 20px;
+    margin-left: 100px;
+    text-align: left;
+}
+
+.container.mt-3 h4 {
+    color: red;
+    font-size: 16px;
+}
+
+/* Footer styles */
+.container-fluid.bg-dark.text-red.p-3.fixed-bottom { /* Add "fixed-bottom" to align the footer to the bottom */
+    background-color: #333;
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Apply a hover effect to menu links */
+.navbar.navbar-expand-lg.navbar-light.bg-light .navbar-nav .nav-link:hover {
+    text-decoration: underline;
+}
+
+/* Additional styles for links */
+a {
+    text-decoration: none;
+    color: #0077b5; /* LinkedIn blue color */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Add styles for visited links */
+a:visited {
+    color: #4d4d4d; /* Visited link color */
+}
