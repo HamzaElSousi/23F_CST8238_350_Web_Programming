@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Lab 10 - XML, JavaScript and JSON</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        table {
+            margin-bottom: 20px;
+        }
+
+        #result {
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var booksArray = []; // Declare the array outside the function to persist data
+        var itemsPerLoad = 3; // Number of items to display per click
+        var currentIndex = 0; // Index to keep track of the current position
+
+        function convertXMLtoJSON() {
+            if (booksArray.length === 0) {
+                // Load XML file using AJAX
+                $.ajax({
+                    type: "GET",
+                    url: "Books.xml", // Assuming Books.xml is in the same directory as your HTML file
+                    dataType: "xml",
+                    success: function (xml) {
+                        // Create an array of JSON objects equivalent to the provided XML file.
+                        $(xml).find("book").each(function () {
+                            var book = {
+                                author: $(this).find("author").text(),
+                                title: $(this).find("title").text(),
+                                genre: $(this).find("genre").text(),
+                                price: parseFloat($(this).find("price").text()),
+                                publish_date: $(this).find("publish_date").text(),
+                                description: $(this).find("description").text()
+                            };
+                            booksArray.push(book);
+                        });
+
+                        // Display the initial set of items
+                        displayNextItems();
+                    },
+                    error: function () {
+                        console.error("Error loading XML file.");
+                    }
+                });
+            } else {
+                // Display the next set of items
+                displayNextItems();
+            }
+        }
+
+        function displayNextItems() {
+            var resultDiv = document.getElementById("result");
+            var endIndex = currentIndex + itemsPerLoad;
+
+            // Display the elements of the array of JSON objects on the webpage.
+            for (var i = currentIndex; i < endIndex && i < booksArray.length; i++) {
+                resultDiv.innerHTML += "<div class='book-info'>";
+                resultDiv.innerHTML += "<p><strong>Book " + (i + 1) + "</strong></p>";
+                resultDiv.innerHTML += "<pre>" + JSON.stringify(booksArray[i], null, 2) + "</pre>";
+                resultDiv.innerHTML += "</div>";
+            }
+
+            // Update the current index
+            currentIndex = endIndex;
+
+            // Check if all items have been displayed
+            if (currentIndex >= booksArray.length) {
+                document.getElementById("btnConvertJSON").disabled = true;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Lab 10 - XML, JavaScript and JSON</h1>
+    </header>
+
+    <main>
+        <h3>Displaying Array of JSON objects</h3>
+
+        <table>
+            <tr>
+                <td><input onclick="convertXMLtoJSON()" name="btnConvertJSON" id="btnConvertJSON" value="JSONDisplay!" type="button"></td>
+            </tr>
+        </table>
+
+        <div id="result"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Hamza El Sousi | 040982818 | elso0011@algonquinlive.com</p>
+    </footer>
+</body>
+
+</html>

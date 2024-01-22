@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Lab 10 - XML, JavaScript and JSON</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        var booksArray = []; // Declare the array outside the function to persist data
+
+        function convertXMLtoJSON() {
+            // Retrieve the content of the XML file using JavaScript.
+            var xmlString = `<?xml version="1.0"?>
+                <catalog>
+                   <book>
+                      <author>Gambardella, Matthew</author>
+                      <title>XML Developer's Guide</title>
+                      <genre>Computer</genre>
+                      <price>44.95</price>
+                      <publish_date>2000-10-01</publish_date>
+                      <description>An in-depth look at creating applications 
+                      with XML.</description>
+                   </book>
+                   <!-- More book entries... -->
+                </catalog>`;
+
+            var xmlDoc = $.parseXML(xmlString);
+            var $xml = $(xmlDoc);
+
+            // Create an array of JSON objects equivalent to the provided XML file.
+            $xml.find("book").each(function () {
+                var book = {
+                    author: $(this).find("author").text(),
+                    title: $(this).find("title").text(),
+                    genre: $(this).find("genre").text(),
+                    price: parseFloat($(this).find("price").text()),
+                    publish_date: $(this).find("publish_date").text(),
+                    description: $(this).find("description").text()
+                };
+                booksArray.push(book);
+            });
+
+            // Display the elements of the array of JSON objects on the webpage.
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = ""; // Clear previous results
+            for (var i = 0; i < booksArray.length; i++) {
+                resultDiv.innerHTML += "<p>Book " + (i + 1) + ":</p>";
+                resultDiv.innerHTML += "<pre>" + JSON.stringify(booksArray[i], null, 2) + "</pre>";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h3>Lab 10- Displaying Array of JSON objects </h3>
+
+    <table>
+        <tr>
+            <td><input onclick="convertXMLtoJSON()" name="btnConvertJSON" id="btnConvertJSON" value="JSONDisplay!" type="button"></td>
+        </tr>
+    </table>
+
+    <div id="result"></div>
+</body>
+
+</html>

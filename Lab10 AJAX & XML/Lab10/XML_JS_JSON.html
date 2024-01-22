@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Lab 10 - XML, JavaScript and JSON</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-color: #4285f4;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        main {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            position: relative; /* Add this line to make it a reference point for absolute positioning */
+        }
+
+        h3 {
+            color: #4285f4;
+            margin-bottom: 20px;
+        }
+
+        table {
+            margin-bottom: 20px;
+        }
+
+        #result {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+        }
+
+        .book-info {
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: left;
+            background-color: #f9f9f9;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        #counter {
+            color: #888;
+            margin-top: 10px;
+        }
+
+        #loadMoreBtn {
+            position: absolute;
+            bottom: 10px; /* Adjust the distance from the bottom as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1; /* Ensure the button is above other elements, including the footer */
+        }
+
+        footer {
+            background-color: #4285f4;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 2; /* Ensure the footer is above other elements, including the button */
+        }
+    </style>
+
+    <script type="text/javascript">
+        var booksArray = []; // Declare the array outside the function to persist data
+        var itemsPerLoad = 3; // Number of items to display per click
+        var currentIndex = 0; // Index to keep track of the current position
+
+        function convertXMLtoJSON() {
+            if (booksArray.length === 0) {
+                // Load XML file using AJAX
+                $.ajax({
+                    type: "GET",
+                    url: "Books.xml", // Assuming Books.xml is in the same directory as your HTML file
+                    dataType: "xml",
+                    success: function (xml) {
+                        // Create an array of JSON objects equivalent to the provided XML file.
+                        $(xml).find("book").each(function () {
+                            var book = {
+                                author: $(this).find("author").text(),
+                                title: $(this).find("title").text(),
+                                genre: $(this).find("genre").text(),
+                                price: parseFloat($(this).find("price").text()),
+                                publish_date: $(this).find("publish_date").text(),
+                                description: $(this).find("description").text()
+                            };
+                            booksArray.push(book);
+                        });
+
+                        // Display the initial set of items
+                        displayNextItems();
+                    },
+                    error: function () {
+                        console.error("Error loading XML file.");
+                    }
+                });
+            } else {
+                // Display the next set of items
+                displayNextItems();
+            }
+        }
+
+        function displayNextItems() {
+            var resultDiv = document.getElementById("result");
+            var endIndex = currentIndex + itemsPerLoad;
+
+            // Display the elements of the array of JSON objects on the webpage.
+            for (var i = currentIndex; i < endIndex && i < booksArray.length; i++) {
+                resultDiv.innerHTML += "<div class='book-info'>";
+                resultDiv.innerHTML += "<p><strong>Book " + (i + 1) + "</strong></p>";
+                resultDiv.innerHTML += "<pre>" + JSON.stringify(booksArray[i], null, 2) + "</pre>";
+                resultDiv.innerHTML += "</div>";
+            }
+
+            // Update the current index
+            currentIndex = endIndex;
+
+            // Check if all items have been displayed
+            if (currentIndex >= booksArray.length) {
+                document.getElementById("btnConvertJSON").disabled = true;
+            }
+
+            // Display the counter
+            document.getElementById("counter").innerText = "Displayed " + currentIndex + " out of " + booksArray.length + " books";
+        }
+
+        function clearResults() {
+            // Clear the displayed results and reset the counter
+            document.getElementById("result").innerHTML = "";
+            currentIndex = 0;
+            document.getElementById("btnConvertJSON").disabled = false;
+            document.getElementById("counter").innerText = "";
+        }
+
+        function loadMore() {
+            // Display the next set of items
+            displayNextItems();
+        }
+
+        function sortItemsBy(property) {
+            // Sort the items by the specified property
+            booksArray.sort((a, b) => {
+                return a[property].localeCompare(b[property]);
+            });
+
+            // Clear current results and display sorted items
+            clearResults();
+            displayNextItems();
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Explore Books with JSON</h1>
+        <h4>Lab 10 - XML, JavaScript and JSON</h4>
+    </header>
+
+    <main>
+        <h3>Displaying Array of JSON objects</h3>
+
+        <table>
+            <tr>
+                <td><input onclick="convertXMLtoJSON()" name="btnConvertJSON" id="btnConvertJSON" value="Show Books" type="button"></td>
+                <td><button onclick="clearResults()">Clear Results</button></td>
+                <td><span id="counter"></span></td>
+            </tr>
+            <tr>
+                <!-- <td colspan="3"><button onclick="loadMore()">Load More</button></td> -->
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <label>Sort by:
+                        <select onchange="sortItemsBy(this.value)">
+                            <option value="author">Author</option>
+                            <option value="title">Title</option>
+                            <!-- Add more sorting options as needed -->
+                        </select>
+                    </label>
+                </td>
+            </tr>
+        </table>
+
+        <div id="result"></div>
+
+        <button id="loadMoreBtn" onclick="loadMore()">Load More</button>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Hamza El Sousi | 040982818 | elso0011@algonquinlive.com</p>
+    </footer>
+</body>
+
+</html>
